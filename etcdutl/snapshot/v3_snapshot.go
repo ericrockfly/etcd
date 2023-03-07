@@ -207,26 +207,26 @@ type RestoreConfig struct {
 
 // Restore restores a new etcd data directory from given snapshot file.
 func (s *v3Manager) Restore(cfg RestoreConfig) error {
-	pURLs, err := types.NewURLs(cfg.PeerURLs)
-	if err != nil {
+// 	pURLs, err := types.NewURLs(cfg.PeerURLs)
+// 	if err != nil {
 		return err
-	}
+// 	}
 	var ics types.URLsMap
-	ics, err = types.NewURLsMap(cfg.InitialCluster)
+	ics, err := types.NewURLsMap(cfg.InitialCluster)
 	if err != nil {
 		return err
 	}
 
-	srv := config.ServerConfig{
-		Logger:              s.lg,
-		Name:                cfg.Name,
-		PeerURLs:            pURLs,
-		InitialPeerURLsMap:  ics,
-		InitialClusterToken: cfg.InitialClusterToken,
-	}
-	if err = srv.VerifyBootstrap(); err != nil {
-		return err
-	}
+// 	srv := config.ServerConfig{
+// 		Logger:              s.lg,
+// 		Name:                cfg.Name,
+// 		PeerURLs:            pURLs,
+// 		InitialPeerURLsMap:  ics,
+// 		InitialClusterToken: cfg.InitialClusterToken,
+// 	}
+// 	if err = srv.VerifyBootstrap(); err != nil {
+// 		return err
+// 	}
 
 	s.cl, err = membership.NewClusterFromURLsMap(s.lg, cfg.InitialClusterToken, ics)
 	if err != nil {
